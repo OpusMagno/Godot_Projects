@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://1nyjw0dv4evt"]
+
+[ext_resource type="Texture2D" uid="uid://v1lagt6rdonp" path="res://icon.svg" id="1_7hdbw"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ixvux"]
+[ext_resource type="PackedScene" uid="uid://cyrbrg80jo8yo" path="res://scenes/player.tscn" id="3_38aqt"]
+[ext_resource type="PackedScene" uid="uid://c0b32urbqik2a" path="res://scenes/enemy.tscn" id="4_htt3r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lmvge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow7ad"]
+size = Vector2(447, 20)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ixvux")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_lmvge")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(213.5, 256)
+scale = Vector2(3.49219, 0.15625)
+texture = ExtResource("1_7hdbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(213.5, 256)
+shape = SubResource("RectangleShape2D_ow7ad")
+
+[node name="Player" parent="." instance=ExtResource("3_38aqt")]
+position = Vector2(159, 182)
+
+[node name="Enemy" parent="." instance=ExtResource("4_htt3r")]
+visibility_layer = 6
+position = Vector2(195, 180)
